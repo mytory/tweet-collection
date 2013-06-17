@@ -1,3 +1,7 @@
+<?
+// TODO token 등 입력하도록 입력폼을 만들어야 한다.
+// TODO 설명 번역 파일을 만들어야 한다.
+?>
 <style type="text/css">
 	.assistive-text{display:none}
 	form.tc{padding:20px;background:#ddd;border:1px solid #aaa;border-radius:5px;margin-top:20px;}

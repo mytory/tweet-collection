@@ -8,7 +8,7 @@ Version: 1.0.4
 
 //언어 파일 등록
 function tweet_collection_init() {
-	load_plugin_textdomain( 'tweet-collection', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'tweet-collection', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action('plugins_loaded', 'tweet_collection_init');
 
@@ -32,13 +32,13 @@ function tc_register_custom_post_type() {
 	);
 	$args = array(
 		'labels' => $labels,
-		'public' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
-		'query_var' => true,
-		'has_archive' => true, 
-		'hierarchical' => false,
+		'public' => TRUE,
+		'publicly_queryable' => TRUE,
+		'show_ui' => TRUE,
+		'show_in_menu' => TRUE,
+		'query_var' => TRUE,
+		'has_archive' => TRUE,
+		'hierarchical' => FALSE,
 		'menu_position' => 4,
 		'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields', 'revisions' )
 	); 
@@ -52,12 +52,14 @@ function tc_top_menu() {
 	add_options_page(__('Tweet Collection', 'tweet-collection'), __('Tweet Collection', 'tweet-collection'), 9, 'tweet-collection', 'tc_menu_page');
 }
 function tc_menu_page() {
-	if (!current_user_can('manage_options')) 
+	if (!current_user_can('manage_options'))
 		wp_die( __('You do not have sufficient permissions to access this page.', 'tweet-collection') );
 	if( isset($_POST['title_length']) ){
 		update_option('tweet-collection-title-length', $_POST['title_length']);
 	}
-	
+
+    // TODO token 같은 것들 저장하도록 해야 한다.
+
 	if( isset($_POST['tweet_username']) AND ! empty($_POST['tweet_username']) ){
 		if( get_option( 'tweet-collection-twitter-username' ) == $_POST['tweet_username'] ){
 			$message = __('Saved!', 'tweet-collection');
@@ -75,6 +77,7 @@ function tc_menu_page() {
 	}else if( isset($_POST['tweet_username']) AND empty($_POST['tweet_username'])){
 		$message = __('Fill User ID!', 'tweet-collection');
 	}
+
 	include 'tc-menu-page.php';
 }
 
@@ -120,40 +123,47 @@ function tc_extract_link($s) {
   }
 }
 
-// 트위터의 xml을 긁어서 집어 넣을 콘텐츠를 만든다.
-function tc_get_tweets_xmldom(){
-	// 내 트위터 RSS
-	$url = 'http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=' . get_option('tweet-collection-twitter-username');
-
-	// cURL로 트위터 RSS XML을 받아 온다.
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	$tweets = curl_exec($ch);
-	curl_close($ch);
-
-	// SimpleXML을 이용해서 XML을 PHP 객체와 배열로 만든다. 
-	// http://www.php.net/manual/en/simplexml.examples-basic.php 참고
-	$xmldom = new SimpleXMLElement($tweets);
-
-	$item_count = count($xmldom->channel->item);
-
-	// 트위터 글에 링크가 있으면 RSS의 목적지 URL을 그 링크로 대체한다.
-	// 이렇게 하지 않으면 RSS의 목적지 URL이 트위터 글이 된다.
-	for($i = $item_count-1 ; $i > -1; $i--){
-		$desc = $xmldom->channel->item[$i]->description;
-		$link = tc_extract_link($desc);
-		$title = str_replace($link,'',$xmldom->channel->item[$i]->title);
-		$twitter_username = get_option('tweet-collection-twitter-username');
-		if(trim($title) != $twitter_username.':'){
-			$xmldom->channel->item[$i]->title = $title;
-		}
-		if( strlen($link)>19 ){
-			$xmldom->channel->item[$i]->description = tc_linkfy($desc);
-		}
+// 설정값이 모두 제대로 들어가 있는지 검사한다.
+function tc_is_setup_complete(){
+	if( ! get_option('tweet-collection-twitter-username') ){
+		return false;
 	}
+	if( ! get_option('tweet-collection-consumer-key')){
+		return false;
+	}
+    if( ! get_option('tweet-collection-consumer-secret')){
+    	return false;
+    }
+ 	if( ! get_option('tweet-collection-access-token')){
+ 		return false;
+ 	}
+    if( ! get_option('tweet-collection-access-token-secret')){
+    	return false;
+    }
+    return true;
+}
 
-	return $xmldom;
+// 트위터의 xml을 긁어서 집어 넣을 콘텐츠를 만든다.
+function tc_get_timeline(){
+    require_once("twitteroauth/twitteroauth/twitteroauth.php"); //Path to twitteroauth library
+
+    $twitteruser = get_option('tweet-collection-twitter-username');
+    $number_tweets = 30;
+    $consumer_key = get_option('tweet-collection-consumer-key');
+    $consumer_secret = get_option('tweet-collection-consumer-secret');
+    $access_token = get_option('tweet-collection-access-token');
+    $access_token_secret = get_option('tweet-collection-access-token-secret');
+
+    $connection = get_connection_with_access_token($consumer_key, $consumer_secret, $access_token, $access_token_secret);
+
+    $tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$number_tweets);
+
+    return json_encode($tweets);
+}
+
+function get_connection_with_access_token($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
+    $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
+    return $connection;
 }
 
 /**
@@ -172,23 +182,23 @@ if ( ! function_exists('htmlspecialchars_decode') ){
 // 트위터의 xml을 긁어 와서 새 Tweet Post Type으로 등록하는 함수를 만든다.
 function tc_insert_tweet_custom_post(){
 	//설정이 제대로 안 돼 있으면 중단.
-	if( ! get_option('tweet-collection-twitter-username') ){
-		return false;
+	if( ! tc_is_setup_complete() ){
+		return FALSE;
 	}
-	$xmldom = tc_get_tweets_xmldom();
-	$item_count = count($xmldom->channel->item);
+	$json = tc_get_timeline();
+	$item_count = count($json->channel->item);
 	for($i = 0; $i < $item_count; $i++){
-		$title = htmlspecialchars_decode($xmldom->channel->item[$i]->title);
-		$desc = $xmldom->channel->item[$i]->description;
-		$tweet_guid = $xmldom->channel->item[$i]->guid;
+		$title = htmlspecialchars_decode($json->channel->item[$i]->title);
+		$desc = $json->channel->item[$i]->description;
+		$tweet_guid = $json->channel->item[$i]->guid;
 		if( tc_is_already_insert($tweet_guid) > 0 ){
 			continue;
 		}
 		$gmt_offset = get_option('gmt_offset');
-		$timestamp = $gmt_offset*60*60 + strtotime($xmldom->channel->item[$i]->pubDate);
+		$timestamp = $gmt_offset*60*60 + strtotime($json->channel->item[$i]->pubDate);
 		$datetime = date_i18n(get_option('date_format') .' '. get_option('time_format') , $timestamp);
-		$post_date = date('Y-m-d H:i:s', strtotime($xmldom->channel->item[$i]->pubDate));
-		$post_date_gmt = date('Y-m-d H:i:s', $gmt_offset*60*60 + strtotime($xmldom->channel->item[$i]->pubDate));
+		$post_date = date('Y-m-d H:i:s', strtotime($json->channel->item[$i]->pubDate));
+		$post_date_gmt = date('Y-m-d H:i:s', $gmt_offset*60*60 + strtotime($json->channel->item[$i]->pubDate));
 		$args = array(
 			'comment_status' => 'closed', // 'closed' means no comments.
 			'post_date'=>$post_date_gmt,
@@ -201,8 +211,7 @@ function tc_insert_tweet_custom_post(){
 		$post_id = wp_insert_post($args);
 
 		if($post_id){
-			add_post_meta($post_id, 'tc_tweet_guid', (string)$tweet_guid, true);
-		}else{
+			add_post_meta($post_id, 'tc_tweet_guid', (string)$tweet_guid, TRUE);
 		}
 	}
 
@@ -225,6 +234,11 @@ register_activation_hook( __FILE__, 'tweet_collection_activate' );
 function tweet_collection_deactivate(){
 	wp_clear_scheduled_hook( 'collect_tweets' );
 	delete_option('tweet-collection-twitter-username');
+ 	delete_option('tweet-collection-consumer-key');
+    delete_option('tweet-collection-consumer-secret');
+ 	delete_option('tweet-collection-access-token');
+    delete_option('tweet-collection-access-token-secret');
+
 }
 register_deactivation_hook( __FILE__, 'tweet_collection_deactivate' );
 
