@@ -3,7 +3,7 @@
 Plugin Name: Tweet collection
 Description: This plugin collect tweets from specific Twitter account. tweets` post_type is ‘tweet’, when you save tweets general post and tweet do not mixed.
 Author: Ahn, Hyoung-woo
-Version: 1.0.4
+Version: 1.1
 */
 
 function tc_get_option_names () {
@@ -99,19 +99,17 @@ function tc_menu_page () {
 
 // 트위터 아이디 설정을 하지 않은 경우 등록하라고 메시지를 뿌린다.
 function tc_should_setup_msg () {
-    if ( ! tc_is_setup_complete()) {
-        ?>
-        <div class="updated">
-            <p>
-                <?php _e('Set options completely for Tweet Collection', 'tweet-collection') ?>
-                <a href="options-general.php?page=tweet-collection"><?php _e('Go to Tweet Collection Option page!', 'tweet-collection') ?></a>
-            </p>
-        </div>
+    ?>
+    <div class="updated">
+        <p>
+            <?php _e('Set options completely for Tweet Collection.', 'tweet-collection') ?>
+            <a href="options-general.php?page=tweet-collection"><?php _e('Go to Tweet Collection Option page!', 'tweet-collection') ?></a>
+        </p>
+    </div>
     <?
-    }
 }
 
-if ( ! get_option('tweet-collection-twitter-username')) {
+if ( ! tc_is_setup_complete()) {
     add_action('admin_notices', 'tc_should_setup_msg');
 }
 
