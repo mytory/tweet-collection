@@ -98,12 +98,12 @@ function tc_menu_page () {
 }
 
 // 트위터 아이디 설정을 하지 않은 경우 등록하라고 메시지를 뿌린다.
-function tc_shoud_set_username_admin_notice () {
-    if (!isset($_POST['tweet_username'])) {
+function tc_should_setup_msg () {
+    if ( ! tc_is_setup_complete()) {
         ?>
         <div class="updated">
             <p>
-                <?php _e('Set your collecting twitter target username!', 'tweet-collection') ?>
+                <?php _e('Set options completely for Tweet Collection', 'tweet-collection') ?>
                 <a href="options-general.php?page=tweet-collection"><?php _e('Go to Tweet Collection Option page!', 'tweet-collection') ?></a>
             </p>
         </div>
@@ -112,7 +112,7 @@ function tc_shoud_set_username_admin_notice () {
 }
 
 if ( ! get_option('tweet-collection-twitter-username')) {
-    add_action('admin_notices', 'tc_shoud_set_username_admin_notice');
+    add_action('admin_notices', 'tc_should_setup_msg');
 }
 
 // 20분에 한 번씩 실행되는 옵션을 cron에 등록한다. (나중엔 얼마에 한 번씩 긁어올 지도 설정할 수 있게 한다.)
@@ -146,7 +146,7 @@ function tc_extract_link ($s) {
 function tc_is_setup_complete () {
     $tc_option_names = tc_get_option_names();
     foreach ($tc_option_names as $opt_name) {
-        if (!get_option($opt_name)) {
+        if ( ! get_option($opt_name)) {
             return FALSE;
         }
     }
@@ -155,7 +155,7 @@ function tc_is_setup_complete () {
 
 /**
  * 트위터의 json을 긁어서 집어 넣을 콘텐츠를 만든다.
- * @return [type] [description]
+ * @return array
  */
 function tc_get_timeline () {
     require_once("twitteroauth/twitteroauth/twitteroauth.php"); //Path to twitteroauth library
@@ -196,37 +196,32 @@ if (!function_exists('htmlspecialchars_decode')) {
 // 트위터의 xml을 긁어 와서 새 Tweet Post Type으로 등록하는 함수를 만든다.
 function tc_insert_tweet_custom_post () {
     //설정이 제대로 안 돼 있으면 중단.
-    if (!tc_is_setup_complete()) {
+    if ( ! tc_is_setup_complete()) {
         return FALSE;
     }
-    $json = tc_get_timeline();
-    ?>
-    <pre>
-    	<?print_r($json);?>
-    </pre>
-    <?
-    exit;
-    $item_count = count($json->channel->item);
-    for ($i = 0; $i < $item_count; $i++) {
-        $title = htmlspecialchars_decode($json->channel->item[$i]->title);
-        $desc = $json->channel->item[$i]->description;
-        $tweet_guid = $json->channel->item[$i]->guid;
+    $timeline = tc_get_timeline();
+    
+    foreach ($timeline as $tweet) {
+        
+        $post_content = tc_get_post_content($tweet->text, $tweet->entities->urls);
+        $post_title = htmlspecialchars_decode(strip_tags($post_content));
+        $tweet_guid = 'http://twitter.com/mytory/statuses/' . $tweet->id_str;
         if (tc_is_already_insert($tweet_guid) > 0) {
             continue;
         }
         $gmt_offset = get_option('gmt_offset');
-        $timestamp = $gmt_offset * 60 * 60 + strtotime($json->channel->item[$i]->pubDate);
-        $datetime = date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $timestamp);
-        $post_date_gmt = date('Y-m-d H:i:s', $gmt_offset * 60 * 60 + strtotime($json->channel->item[$i]->pubDate));
+        $datetime = tc_get_datetime($tweet->created_at, $gmt_offset);
+        $post_date_gmt = tc_get_post_date_gmp($tweet->created_at, $gmt_offset);
         $args = array (
-            'comment_status' => 'closed', // 'closed' means no comments.
+            'comment_status' => 'closed',
             'post_date' => $post_date_gmt,
-            'ping_status' => 'closed', // 'closed' means pingbacks or trackbacks turned off
-            'post_content' => $desc . "\n\n" . "<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>", //The full text of the post.
-            'post_status' => 'publish', //Set the status of the new post.
-            'post_title' => $title, //The title of your post.
-            'post_type' => 'tweet', //You may want to insert a regular post, page, link, a menu item or some custom post type
+            'ping_status' => 'closed',
+            'post_content' => $post_content . "\n\n" . "<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>",
+            'post_status' => 'publish',
+            'post_title' => $post_title,
+            'post_type' => 'tweet',
         );
+
         $post_id = wp_insert_post($args);
 
         if ($post_id) {
@@ -234,6 +229,31 @@ function tc_insert_tweet_custom_post () {
         }
     }
     return TRUE;
+}
+
+/**
+ * text에 있는 URL을 실제 URL로 변경한다.
+ * @param  string $text 
+ * @param  array $urls URL 정보가 있는 배열
+ * @return string t.co URL text를 실제 URL text와 HTML 링크로 변경한 문자열
+ */
+function tc_get_post_content($text, $urls){
+	foreach ($urls as $url_info) {
+		$a_tag = "<a href='{$url_info->expanded_url}'>{$url_info->display_url}</a>";
+		$text = str_replace($url_info->url, $a_tag, $text);
+	}
+	return $text;
+}
+
+function tc_get_post_date_gmp($created_at, $gmt_offset){
+    $post_date_gmt = date('Y-m-d H:i:s', $gmt_offset * 60 * 60 + strtotime($created_at));
+    return $post_date_gmt;
+}
+
+function tc_get_datetime($created_at, $gmt_offset){
+	$timestamp = $gmt_offset * 60 * 60 + strtotime($created_at);
+    $datetime = date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $timestamp);
+    return $datetime;
 }
 
 //중복 컨텐츠 확인을 위한 함수
