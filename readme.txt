@@ -32,23 +32,47 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 
 Extract the zip file and just drop the contents in the `wp-content/plugins/` directory of your WordPress installation and then activate the Plugin from Plugins page.
 
+To get tweets, require twitter authentication. Twitter not serve user RSS feed no longer. So you have to take key and secret string for twitter app. That is very easy. Follow below description and screenshot.
+
+![1. dev page login](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/01-dev-page-login.png)
+![2. create a new application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/02-create-a-new-application.png)
+![3. application detail](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/03-application-detail.png)
+![4. create your twitter application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/04-create-your-twitter-application.png)
+![5. oauth setting](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/05-oauth-setting.png)
+![6. create my access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/06-create-my-access-token.png)
+![7. your access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/07-your-access-token.png)
+
+1. First, go to [page that request app key](https://dev.twitter.com/apps). Sign in as your username.
+1. Click __Create a new application__ button.
+1. At __Create an application__ page, fill __Application Details__ fields.
+    * Name: Fill you want.
+    * Description: Fill you want.
+    * Website: Your blog URL. __http://__ is required.
+    * Callback URL: Let blank.
+    * Developer Rules of the Road: Check __Yes, I agree__.
+1. Fill CAPTCHA and click __Create your Twitter application__ button.
+1. You can see app page. If you are on app list page, enter app you made. Watch __Details__ tab. Check __Consumer Key__ and __Consumer Secret__. Now, scroll down.
+1. Bottom of __Details__, there is __Create my access token__ button. Click. So, __Access Token__ and __Access Token Secret__ will be generated. Check.
+1. Return to Tweet Collection Setup page. (__Setup > Tweet Collection__) Fill __Consumer key__, __Consumer Secret__, __Access Token__, __Access Token Secret__.
+1. When you save settings, that is first time getting tweets. Afterward, get tweets by each 20m.
+
 zip 압축을 풀고 내용을 `wp-content/plugins/` 폴더에 넣습니다. 그리고 플러그인을 활성화합니다.
 
 트위터를 긁어 오려면 트위터의 인증이 필요합니다. 더이상 개인 트위터 계정의 RSS 피드를 제공하지 않기 때문입니다. 그래서 트위터에 가서 '앱'용 key를 발급받아야 합니다. 키를 발급받는 것은 아주 쉬우니 겁먹지 않아도 됩니다.
 
 1. 우선 [트위터 앱용 key 신청 페이지](https://dev.twitter.com/apps)로 갑니다. 로그인하라고 하면 자기 트위터의 아이디와 비밀번호를 입력하면 됩니다.
-2. __Create a new application__ 버튼을 누릅니다.
-3. 위 버튼을 누르면 __Create an application__ 페이지가 나옵니다. __Application Details__의 각 항목에 다음과 같이 입력합니다.
+1. __Create a new application__ 버튼을 누릅니다.
+1. 위 버튼을 누르면 __Create an application__ 페이지가 나옵니다. __Application Details__의 각 항목에 다음과 같이 입력합니다.
     * Name: 알아서 적당한 이름을 넣으세요.
     * Description: 알아서 적당한 설명을 넣으세요.
     * Website: 자기 블로그 URL을 적습니다. __http://__를 포함해서 적어야 합니다.
     * Callback URL: 비워 놓습니다.
     * Developer Rules of the Road: __Yes, I agree__에 체크합니다.
-4. CAPTCHA를 입력하고, __Create your Twitter application__ 버튼을 누릅니다.
-5. 자신이 만든 앱 화면으로 들어갔을 것입니다. 만약 다시 목록 화면이 나왔다면 방금 만든 어플리케이션으로 들어갑시다. __Details__ 탭을 봅니다. __Consumer Key__와 __Consumer Secret__이 있는 것을 확인하고 아래로 스크롤합니다.
-6. __Details__ 탭의 아래쪽에 보면 __Create my access token__ 버튼이 있습니다. 이걸 누릅니다. 그러면 버튼의 바로 위에 __Access Token__과 __Access Token Secret__이 생긴 것을 알 수 있습니다.
-7. 이제 Tweet Collection의 설정 화면으로 갑니다. 워드프레스 관리자 페이지의 __설정 > 트윗 모으기__로 가서, __Consumer key__, __Consumer Secret__, __Access Token__, __Access Token Secret__을 비롯한 설정값을 입력해 줍니다. 
-8. 저장을 하면 처음으로 트윗을 긁어오게 됩니다. 이후로는 20분에 한 번씩 트윗을 긁어 옵니다.
+1. CAPTCHA를 입력하고, __Create your Twitter application__ 버튼을 누릅니다.
+1. 자신이 만든 앱 화면으로 들어갔을 것입니다. 만약 다시 목록 화면이 나왔다면 방금 만든 어플리케이션으로 들어갑시다. __Details__ 탭을 봅니다. __Consumer Key__와 __Consumer Secret__이 있는 것을 확인하고 아래로 스크롤합니다.
+1. __Details__ 탭의 아래쪽에 보면 __Create my access token__ 버튼이 있습니다. 이걸 누릅니다. 그러면 버튼의 바로 위에 __Access Token__과 __Access Token Secret__이 생긴 것을 알 수 있습니다.
+1. 이제 Tweet Collection의 설정 화면으로 갑니다. 워드프레스 관리자 페이지의 __설정 > 트윗 모으기__로 가서, __Consumer key__, __Consumer Secret__, __Access Token__, __Access Token Secret__을 비롯한 설정값을 입력해 줍니다. 
+1. 저장을 하면 처음으로 트윗을 긁어오게 됩니다. 이후로는 20분에 한 번씩 트윗을 긁어 옵니다.
 
 == Frequently Asked Questions ==
 
@@ -70,17 +94,17 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 
 == Screenshots ==
 
-1. [Tweet Collection menu in admin page.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-1.png)
-1. [Setting page. You can go Tweet archive page on here.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-2.png)
-1. [Tweet archive page and widgets.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-3.png)
-1. [widgets Tweet Collection provide.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-4.png)
-1. [How add Tweet archive page to menu.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-5.png)
+1. ![Tweet Collection menu in admin page.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-1.png)
+1. ![Setting page. You can go Tweet archive page on here.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-2.png)
+1. ![Tweet archive page and widgets.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-3.png)
+1. ![widgets Tweet Collection provide.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-4.png)
+1. ![How add Tweet archive page to menu.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-5.png)
 
 == Changelog ==
 
 = 1.1 =
 
-* update to twitter api v1.1
+* update for twitter api v1.1
 
 = 1.0.4 =
 

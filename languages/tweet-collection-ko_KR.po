@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tweeter Collection 1.0\n"
-"POT-Creation-Date: 2012-12-09 04:34+0900\n"
-"PO-Revision-Date: 2012-12-09 04:34+0900\n"
+"POT-Creation-Date: 2013-06-22 03:31+0900\n"
+"PO-Revision-Date: 2013-06-22 03:32+0900\n"
 "Last-Translator: mytory <mytory@gmail.com>\n"
 "Language-Team: mytory.net <mytory@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -12,139 +12,168 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x;_ex\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: C:\\Users\\Administrator\\workspace_mytory\\wp/3.4.2/"
-"wp-content/plugins/tweet-collection\n"
+"X-Poedit-SearchPath-0: ..\n"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:8
+#: ../tc-menu-page.php:61
 msgid "Tweet Collection Options"
 msgstr "트윗 모으기 옵션"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:15
+#: ../tc-menu-page.php:71
 msgid "Twitter User ID : "
 msgstr "트위터 사용자 ID : "
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:19
+#: ../tc-menu-page.php:80
 msgid "Title Length : "
 msgstr "제목 길이 : "
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:22
+#: ../tc-menu-page.php:86
 msgid "If 0, full length."
 msgstr "0으로 설정하면 전체 트윗을 제목으로 합니다."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:23
+#: ../tc-menu-page.php:87
 msgid ""
 "Even if you change the length, Title data does not deleted. Change the "
 "display only."
 msgstr "길이를 바꿔도 제목 데이터는 살아있습니다. 표시만 바꿉니다."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:29
+#: ../tc-menu-page.php:93
+msgid "Number of import tweets at a time : "
+msgstr "한 번에 긁어 올 트윗 개수 : "
+
+#: ../tc-menu-page.php:102
+msgid "To get keys, read manual below."
+msgstr "키를 얻는 방법은 아래 매뉴얼을 참고하세요."
+
+#: ../tc-menu-page.php:107
+msgid "Consumer Key : "
+msgstr "Consumer Key : "
+
+#: ../tc-menu-page.php:116
+msgid "Consumer Secret : "
+msgstr "Consumer Secret : "
+
+#: ../tc-menu-page.php:125
+msgid "Access Token : "
+msgstr "Access Token : "
+
+#: ../tc-menu-page.php:134
+msgid "Access Token Secret : "
+msgstr "Access Token Secret : "
+
+#: ../tc-menu-page.php:146
 #, php-format
 msgid "<a href=\"%s/?post_type=tweet\">You can see tweets on here.</a>"
 msgstr "<a href=\"%s/?post_type=tweet\">트윗들은 여기서 볼 수 있습니다.</a>"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:30
+#: ../tc-menu-page.php:147
 msgid "Go to widget page. (Search Tweet Form, Tweet Archive Link)"
 msgstr "위젯 페이지 가기. (트위 검색, 트윗 모음 링크)"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tc-menu-page.php:31
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:26
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:221
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:222
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:224
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/widget.php:11
-msgid "Search Tweets"
-msgstr "트윗 검색"
+#: ../tc-menu-page.php:148
+msgid "Search Tweets Example"
+msgstr "트윗 검색 예시"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:18
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:30
+#: ../tc-menu-page.php:163
+msgid "Tweet Collection Manual"
+msgstr "트윗 모으기 매뉴얼"
+
+#: ../tc-menu-page.php:164
+msgid "Table of Contents"
+msgstr "목차"
+
+#: ../tweet-collection.php:41 ../tweet-collection.php:53
 msgid "Tweets"
 msgstr "모은 트윗들"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:19
+#: ../tweet-collection.php:42
 msgid "Tweet"
 msgstr "트윗"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:20
+#: ../tweet-collection.php:43
 msgid "Add New"
 msgstr "트윗 추가"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:21
+#: ../tweet-collection.php:44
 msgid "Add New Tweet"
 msgstr "새로운 트윗 등록"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:22
+#: ../tweet-collection.php:45
 msgid "Edit Tweet"
 msgstr "트윗 수정"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:23
+#: ../tweet-collection.php:46
 msgid "New Tweet"
 msgstr "새 트윗"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:24
+#: ../tweet-collection.php:47
 msgid "All Tweets"
 msgstr "트윗 전체 보기"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:25
+#: ../tweet-collection.php:48
 msgid "View Tweet"
 msgstr "트윗 보기"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:27
+#: ../tweet-collection.php:49 ../tweet-collection.php:286
+#: ../tweet-collection.php:287 ../tweet-collection.php:290 ../widget.php:11
+msgid "Search Tweets"
+msgstr "트윗 검색"
+
+#: ../tweet-collection.php:50
 msgid "No tweets found"
 msgstr "수집된 트윗이 없습니다."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:28
+#: ../tweet-collection.php:51
 msgid "No tweets found in Trash"
 msgstr "휴지통에 트윗이 없습니다."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:52
+#: ../tweet-collection.php:76
 msgid "Tweet Collection"
 msgstr "트윗 모으기"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:56
+#: ../tweet-collection.php:81
 msgid "You do not have sufficient permissions to access this page."
 msgstr "이 페이지를 볼 권한이 없습니다."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:63
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:69
+#: ../tweet-collection.php:91
 msgid "Saved!"
 msgstr "저장 완료."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:72
-msgid "Failed!"
-msgstr "오류 발생."
+#: ../tweet-collection.php:105
+msgid "Set options completely for Tweet Collection."
+msgstr "트윗 모으기 설정을 마쳐 주세요."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:76
-msgid "Fill User ID!"
-msgstr "트위터 계정 ID를 입력하세요."
-
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:86
-msgid "Set your collecting twitter target username!"
-msgstr "수집할 트위터 계정 ID를 입력하세요."
-
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:87
+#: ../tweet-collection.php:106
 msgid "Go to Tweet Collection Option page!"
 msgstr "트윗 모음 옵션 페이지에서 설정하시면 됩니다."
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/tweet-collection.php:103
+#: ../tweet-collection.php:123
 msgid "Once by 20 minutes"
 msgstr "20분에 한 번씩"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/widget.php:6
+#: ../widget.php:6
 msgid "Search Tweets Form"
 msgstr "트윗 검색"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/widget.php:27
+#: ../widget.php:27
 msgid "Tweet Archive Link"
 msgstr "트윗 모음 링크"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/widget.php:35
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/widget.php:59
+#: ../widget.php:35 ../widget.php:59
 msgid "My Tweet Archive"
 msgstr "트윗 모음"
 
-#: C:\Users\Administrator\workspace_mytory\wp/3.4.2/wp-content/plugins/tweet-collection/widget.php:64
+#: ../widget.php:64
 msgid "Tweet Archive Link Text:"
 msgstr "트윗 모음 링크 텍스트"
+
+#~ msgid "Failed!"
+#~ msgstr "오류 발생."
+
+#~ msgid "Fill User ID!"
+#~ msgstr "트위터 계정 ID를 입력하세요."
+
+#~ msgid "Set your collecting twitter target username!"
+#~ msgstr "수집할 트위터 계정 ID를 입력하세요."
 
 #~ msgid "a alphabet = 1, other = 3"
 #~ msgstr "알파벳 한 글자는 1, 다른 글자는 3입니다."
