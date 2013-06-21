@@ -9,7 +9,6 @@ Donate link:http://mytory.net/paypal-donation
 
 This plugin collect tweets from specified Twitter account. Post_type of collected tweets will be ‘tweet’ so that normal posts and tweets will not be mixed.
 
-
 == Description ==
 
 This plugin collect tweets from specified Twitter account. Post_type of collected tweets will be ‘tweet’ so that normal posts and tweets will not be mixed. The purpose of this plugin is to search for your tweets on your blog and to collect more than 3,200 tweets. (Twitter does not show you more than 3,200 tweets.)
@@ -20,6 +19,8 @@ I will develope the plugin for all the tweets as soon as possible.
 
 Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collection/screenshots/) to know usage.
 
+This plugin use [php-markdown-1.0.1q](http://michelf.ca/projects/php-markdown/classic/), [twitteroauth](https://github.com/abraham/twitteroauth). 
+
 이 플러그인은 특정 트위터 계정에서 트윗을 긁어 모읍니다. 트윗을 모아서 한 포스트로 만드는 게 아니라, 각각의 트윗은 `tweet`이라는 `post_type`이 됩니다. 트윗을 저장할 때, 일반 글과 트윗이 섞이지 않습니다. 이 플러그인의 목적은 내가 쓴 트윗을 검색하고, 3200개 이상의 트윗을 저장하도록 하는 것입니다. (트위터는 3200개 이상의 트윗은 보여 주지 않습니다. 자신이 쓴 거라 해도 말입니다. 순차적으로 백업 서비스가 개방되고 있기는 합니다만.)
 
 이 플러그인은 설치한 직후에 나온 트윗부터 모으기 시작합니다. 과거의 tweet을 모두 가져오는 것은 아닙니다.
@@ -27,6 +28,8 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 과거의 tweet을 import하는 플러그인은 시간이 나는대로 개발해서 내놓겠습니다.
 
 사용법은 [스크린샷](http://wordpress.org/extend/plugins/tweet-collection/screenshots/)을 참고하세요.
+
+이 플러그인은 [php-markdown-1.0.1q](http://michelf.ca/projects/php-markdown/classic/), [twitteroauth](https://github.com/abraham/twitteroauth)를 사용합니다. 
 
 == Installation ==
 
