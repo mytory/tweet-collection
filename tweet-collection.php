@@ -337,3 +337,10 @@ if (get_option('tweet-collection-title-length') AND get_option('tweet-collection
     add_action('the_title', 'tc_apply_title_length');
     add_filter('single_post_title', 'tc_apply_title_length');
 } 
+
+function tc_rss_template ( $archive_template ) {
+     if (is_post_type_archive ('tweet') AND $_GET['rss'] == 'for-fb') {
+        return dirname( __FILE__ ) . '/tc-rss-for-fb.php';
+     }
+}
+add_filter( 'archive_template', 'tc_rss_template' ) ;
