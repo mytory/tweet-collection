@@ -143,6 +143,8 @@ jQuery(document).ready(function($){
 <p><a href="widgets.php"><?php _e('Go to widget page. (Search Tweet Form, Tweet Archive Link)', 'tweet-collection')?></a></p>
 <h3><?php _e('Search Tweets Example', 'tweet-collection')?></h3>
 <?php tc_print_searchform();?>
+<h3><? _e('Feedback') ?></h3>
+<p><a href="mailto:mytory@gmail.com">mytory@gmail.com</a></p>
 <?php 
 include 'php-markdown-1.0.1q/markdown.php';
 $information_file = "languages/information-en_US.md";
