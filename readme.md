@@ -3,7 +3,7 @@
 **Tags:** twitter  
 **Requires at least:** 3.0  
 **Tested up to:** 3.5  
-**Stable tag:** 1.1  
+**Stable tag:** 1.1.1  
 **License:** GPLv2 or later  
 **Donate link**:http://mytory.net/paypal-donation
 
@@ -130,6 +130,10 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 ![7. your access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/07-your-access-token.png)
 
 ## Changelog ##
+
+### 1.1.1 ###
+
+* provide tweet rss feed.
 
 ### 1.1 ###
 
