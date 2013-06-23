@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tweeter Collection 1.0\n"
-"POT-Creation-Date: 2013-06-22 03:31+0900\n"
-"PO-Revision-Date: 2013-06-22 03:32+0900\n"
+"POT-Creation-Date: 2013-06-23 14:52+0900\n"
+"PO-Revision-Date: 2013-06-23 14:52+0900\n"
 "Last-Translator: mytory <mytory@gmail.com>\n"
 "Language-Team: mytory.net <mytory@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,66 +18,74 @@ msgstr ""
 msgid "Tweet Collection Options"
 msgstr "트윗 모으기 옵션"
 
-#: ../tc-menu-page.php:71
+#: ../tc-menu-page.php:68
+msgid "To get keys, read manual below."
+msgstr "키를 얻는 방법은 아래 매뉴얼을 참고하세요."
+
+#: ../tc-menu-page.php:72
 msgid "Twitter User ID : "
 msgstr "트위터 사용자 ID : "
 
-#: ../tc-menu-page.php:80
+#: ../tc-menu-page.php:81
 msgid "Title Length : "
 msgstr "제목 길이 : "
 
-#: ../tc-menu-page.php:86
+#: ../tc-menu-page.php:87
 msgid "If 0, full length."
 msgstr "0으로 설정하면 전체 트윗을 제목으로 합니다."
 
-#: ../tc-menu-page.php:87
+#: ../tc-menu-page.php:88
 msgid ""
 "Even if you change the length, Title data does not deleted. Change the "
 "display only."
 msgstr "길이를 바꿔도 제목 데이터는 살아있습니다. 표시만 바꿉니다."
 
-#: ../tc-menu-page.php:93
+#: ../tc-menu-page.php:94
 msgid "Number of import tweets at a time : "
 msgstr "한 번에 긁어 올 트윗 개수 : "
 
-#: ../tc-menu-page.php:102
-msgid "To get keys, read manual below."
-msgstr "키를 얻는 방법은 아래 매뉴얼을 참고하세요."
-
-#: ../tc-menu-page.php:107
+#: ../tc-menu-page.php:103
 msgid "Consumer Key : "
 msgstr "Consumer Key : "
 
-#: ../tc-menu-page.php:116
+#: ../tc-menu-page.php:112
 msgid "Consumer Secret : "
 msgstr "Consumer Secret : "
 
-#: ../tc-menu-page.php:125
+#: ../tc-menu-page.php:121
 msgid "Access Token : "
 msgstr "Access Token : "
 
-#: ../tc-menu-page.php:134
+#: ../tc-menu-page.php:130
 msgid "Access Token Secret : "
 msgstr "Access Token Secret : "
 
-#: ../tc-menu-page.php:146
+#: ../tc-menu-page.php:142
 #, php-format
 msgid "<a href=\"%s/?post_type=tweet\">You can see tweets on here.</a>"
 msgstr "<a href=\"%s/?post_type=tweet\">트윗들은 여기서 볼 수 있습니다.</a>"
 
-#: ../tc-menu-page.php:147
+#: ../tc-menu-page.php:143
 msgid "Go to widget page. (Search Tweet Form, Tweet Archive Link)"
 msgstr "위젯 페이지 가기. (트위 검색, 트윗 모음 링크)"
 
-#: ../tc-menu-page.php:148
+#: ../tc-menu-page.php:144
+msgid "Tweets RSS Feed"
+msgstr "트윗 모음 RSS 피드"
+
+#: ../tc-menu-page.php:145
 msgid "Search Tweets Example"
 msgstr "트윗 검색 예시"
 
-#: ../tc-menu-page.php:163
+#: ../tc-menu-page.php:147
+msgid "Feedback"
+msgstr "Feedback"
+
+#: ../tc-menu-page.php:162
 msgid "Tweet Collection Manual"
 msgstr "트윗 모으기 매뉴얼"
 
-#: ../tc-menu-page.php:164
+#: ../tc-menu-page.php:163
 msgid "Table of Contents"
 msgstr "목차"
 

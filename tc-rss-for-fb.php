@@ -31,7 +31,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
     <?php do_action('rss2_head'); ?>
     <?php while( have_posts()) : the_post(); ?>
     <item>
-        <title><?php the_title_rss() ?></title>
+        <title><?php the_content_rss() ?></title>
         <?
         preg_match('/href=["|\']([^ ]+)["|\']/', get_the_content(), $match);
         $is_there_url = count($match);
