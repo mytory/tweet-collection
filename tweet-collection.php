@@ -3,7 +3,7 @@
 Plugin Name: Tweet collection
 Description: This plugin collect tweets from specific Twitter account. tweets` post_type is ‘tweet’, when you save tweets general post and tweet do not mixed.
 Author: Ahn, Hyoung-woo
-Version: 1.1
+Version: 1.1.1
 */
 
 function tc_get_option_names () {

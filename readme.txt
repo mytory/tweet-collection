@@ -3,7 +3,7 @@ Contributors: mytory
 Tags: twitter
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 Donate link:http://mytory.net/paypal-donation
 
@@ -15,13 +15,20 @@ This plugin collect tweets from specified Twitter account. Post_type of collecte
 
 This plugin collects tweets that are posted since its installation. Tweets that posted before its installation will not be collected.
 
-I will develope the plugin for all the tweets as soon as possible.
+= Feature =
+
+* __You can search Individually__ : One tweet is one post(custom post type `tweet`). So you can search tweet individually. This feature is provided by tweet search widget.
+* __Tweet search widget__ : You can simply provide tweet search by widget.
+* __Tweet archive page__ : This plugin provides tweet archive page. This archive page shows only tweets.
+* __Tweet RSS__ : Tweet RSS feed provided. This feed can be used for a variety of purposes. I use this feature to send tweets to my facebook page by facebook app RSS Graffiti.
+
+= detail =
 
 Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collection/screenshots/) to know usage.
 
 This plugin use [php-markdown-1.0.1q](http://michelf.ca/projects/php-markdown/classic/), [twitteroauth](https://github.com/abraham/twitteroauth). 
 
-[Suggest new features and improvements here.](mailto:mytory@gmail.com)
+[Suggest new features and improvements by email.](mailto:mytory@gmail.com)
 
 [Project GitHub](https://github.com/mytory/tweet-collection)
 
@@ -29,7 +36,14 @@ This plugin use [php-markdown-1.0.1q](http://michelf.ca/projects/php-markdown/cl
 
 이 플러그인은 설치한 직후에 나온 트윗부터 모으기 시작합니다. 과거의 tweet을 모두 가져오는 것은 아닙니다.
 
-과거의 tweet을 import하는 플러그인은 시간이 나는대로 개발해서 내놓겠습니다.
+= 특징 =
+
+* __트윗 개별 검색 가능__ : 하나의 트윗은 하나의 포스트입니다. (`tweet`이라는 사용자 포스트 타입이 됩니다.) 그래서 트윗을 개별적으로 검색하는 것이 가능해집니다. 트윗 검색 위젯을 활용해야 합니다.
+* __트윗 검색 위젯__ : 위젯으로 트윗 검색을 간편하게 제공할 수 있습니다.
+* __트윗 아카이브 페이지__ : 이 플러그인은 트윗 아카이브 페이지를 제공합니다. 트윗 아카이브 페이지에는 트윗만 표시됩니다.
+* __트윗 RSS__ : 트윗 RSS 피드가 제공됩니다. 이 피드는 다양한 방식으로 활용할 수 있습니다. 저 같은 경우는 페이스북의 RSS Graffiti 앱과 연동해서 페이스북 페이지로 제 트윗을 보내는 데 활용합니다.
+
+= 상세 =
 
 사용법은 [스크린샷](http://wordpress.org/extend/plugins/tweet-collection/screenshots/)을 참고하세요.
 
@@ -43,15 +57,7 @@ This plugin use [php-markdown-1.0.1q](http://michelf.ca/projects/php-markdown/cl
 
 Extract the zip file and just drop the contents in the `wp-content/plugins/` directory of your WordPress installation and then activate the Plugin from Plugins page.
 
-To get tweets, require twitter authentication. Twitter not serve user RSS feed no longer. So you have to take key and secret string for twitter app. That is very easy. Follow below description and screenshot.
-
-![1. dev page login](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/01-dev-page-login.png)
-![2. create a new application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/02-create-a-new-application.png)
-![3. application detail](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/03-application-detail.png)
-![4. create your twitter application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/04-create-your-twitter-application.png)
-![5. oauth setting](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/05-oauth-setting.png)
-![6. create my access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/06-create-my-access-token.png)
-![7. your access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/07-your-access-token.png)
+To get tweets, require twitter authentication. Twitter not serve user RSS feed no longer. So you have to take key and secret string for twitter app. That is very easy. Follow below description. Consider installation description in screenshot page.
 
 1. First, go to [page that request app key](https://dev.twitter.com/apps). Sign in as your username.
 1. Click __Create a new application__ button.
@@ -105,13 +111,29 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 
 == Screenshots ==
 
+= Usage =
+
 1. ![Tweet Collection menu in admin page.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-1.png)
 1. ![Setting page. You can go Tweet archive page on here.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-2.png)
 1. ![Tweet archive page and widgets.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-3.png)
 1. ![widgets Tweet Collection provide.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-4.png)
 1. ![How add Tweet archive page to menu.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-5.png)
 
+= Installation =
+
+![1. dev page login](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/01-dev-page-login.png)
+![2. create a new application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/02-create-a-new-application.png)
+![3. application detail](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/03-application-detail.png)
+![4. create your twitter application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/04-create-your-twitter-application.png)
+![5. oauth setting](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/05-oauth-setting.png)
+![6. create my access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/06-create-my-access-token.png)
+![7. your access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/07-your-access-token.png)
+
 == Changelog ==
+
+= 1.1.1 =
+
+* provide tweet rss feed.
 
 = 1.1 =
 
