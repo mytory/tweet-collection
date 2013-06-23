@@ -340,7 +340,13 @@ if (get_option('tweet-collection-title-length') AND get_option('tweet-collection
 
 function tc_rss_template ( $archive_template ) {
      if (is_post_type_archive ('tweet') AND $_GET['rss'] == 'for-fb') {
-        return dirname( __FILE__ ) . '/tc-rss-for-fb.php';
+        $args = array(
+            'post_type' => 'tweet',
+            'posts_per_page' => 20,
+        );
+        $wp_query = new WP_Query($args);
+        $archive_template = dirname(__FILE__) . '/tc-rss-for-fb.php';
+        return $archive_template;
      }
 }
 add_filter( 'archive_template', 'tc_rss_template' ) ;
