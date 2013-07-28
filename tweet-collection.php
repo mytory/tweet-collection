@@ -73,7 +73,7 @@ add_action('init', 'tc_register_custom_post_type');
 //옵션 페이지 html, action 등록.
 add_action('admin_menu', 'tc_top_menu');
 function tc_top_menu () {
-    add_options_page(__('Tweet Collection', 'tweet-collection'), __('Tweet Collection', 'tweet-collection'), 9, 'tweet-collection', 'tc_menu_page');
+    add_options_page(__('Tweet Collection', 'tweet-collection'), __('Tweet Collection', 'tweet-collection'), 'manage_options', 'tweet-collection', 'tc_menu_page');
 }
 
 function tc_menu_page () {
