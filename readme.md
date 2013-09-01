@@ -2,8 +2,8 @@
 **Contributors:** mytory  
 **Tags:** twitter  
 **Requires at least:** 3.0  
-**Tested up to:** 3.5  
-**Stable tag:** 1.1.3  
+**Tested up to:** 3.6  
+**Stable tag:** 1.1.4  
 **License:** GPLv2 or later  
 Donate link:http://mytory.net/paypal-donation
 
@@ -142,6 +142,10 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 ![7. your access token](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/07-your-access-token.png)
 
 ## Changelog ##
+
+### 1.1.4 ###
+
+* excluded tweets from default search.
 
 ### 1.1.3 ###
 
