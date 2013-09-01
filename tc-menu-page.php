@@ -141,7 +141,7 @@ jQuery(document).ready(function($){
 </form>
 <p><?php printf(__('<a href="%s/?post_type=tweet">You can see tweets on here.</a>', 'tweet-collection'), get_bloginfo('url'))?></p>
 <p><a href="widgets.php"><?php _e('Go to widget page. (Search Tweet Form, Tweet Archive Link)', 'tweet-collection')?></a></p>
-<p><a href="<?=home_url('?post_type=tweet&rss=for-fb')?>"><? _e('Tweets RSS Feed', 'tweet-collection') ?></a></p>
+<p><a href="<?=plugin_dir_url(__FILE__)?>rss.php"><? _e('Tweets RSS Feed', 'tweet-collection') ?></a></p>
 <h3><?php _e('Search Tweets Example', 'tweet-collection')?></h3>
 <?php tc_print_searchform();?>
 <h3><? _e('Feedback', 'tweet-collection') ?></h3>
