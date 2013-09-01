@@ -111,23 +111,35 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 
 ## Screenshots ##
 
+###1. Tweet Collection menu in admin page.###
+![Tweet Collection menu in admin page.](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/screenshot-1.png)
+
+###2. Setting page. You can go Tweet archive page on here.###
+![Setting page. You can go Tweet archive page on here.](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/screenshot-2.png)
+
+###3. Tweet archive page and widgets.###
+![Tweet archive page and widgets.](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/screenshot-3.png)
+
+###4. widgets Tweet Collection provide.###
+![widgets Tweet Collection provide.](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/screenshot-4.png)
+
+###5. How add Tweet archive page to menu.###
+![How add Tweet archive page to menu.](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/screenshot-5.png)
+
+
 ### Usage ###
 
-1. ![Tweet Collection menu in admin page.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-1.png)
-1. ![Setting page. You can go Tweet archive page on here.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-2.png)
-1. ![Tweet archive page and widgets.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-3.png)
-1. ![widgets Tweet Collection provide.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-4.png)
-1. ![How add Tweet archive page to menu.](http://s-plugins.wordpress.org/tweet-collection/assets/screenshot-5.png)
+[View screenshot.](http://wordpress.org/extend/plugins/tweet-collection/screenshots/)
 
 ### Installation ###
 
-![1. dev page login](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/01-dev-page-login.png)
-![2. create a new application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/02-create-a-new-application.png)
-![3. application detail](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/03-application-detail.png)
-![4. create your twitter application](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/04-create-your-twitter-application.png)
-![5. oauth setting](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/05-oauth-setting.png)
-![6. create my access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/06-create-my-access-token.png)
-![7. your access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/07-your-access-token.png)
+![1. dev page login](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/01-dev-page-login.png)
+![2. create a new application](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/02-create-a-new-application.png)
+![3. application detail](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/03-application-detail.png)
+![4. create your twitter application](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/04-create-your-twitter-application.png)
+![5. oauth setting](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/05-oauth-setting.png)
+![6. create my access token](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/06-create-my-access-token.png)
+![7. your access token](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/07-your-access-token.png)
 
 ## Changelog ##
 
