@@ -63,6 +63,7 @@ function tc_register_custom_post_type () {
         'has_archive' => TRUE,
         'hierarchical' => FALSE,
         'menu_position' => 4,
+        'exclude_from_search' => TRUE,
         'supports' => array ('title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields', 'revisions')
     );
     register_post_type('tweet', $args);
