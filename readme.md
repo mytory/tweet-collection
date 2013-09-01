@@ -3,9 +3,9 @@
 **Tags:** twitter  
 **Requires at least:** 3.0  
 **Tested up to:** 3.5  
-**Stable tag:** 1.1.2
+**Stable tag:** 1.1.3  
 **License:** GPLv2 or later  
-**Donate link**:http://mytory.net/paypal-donation
+Donate link:http://mytory.net/paypal-donation
 
 This plugin collect tweets from specified Twitter account. Post_type of collected tweets will be ‘tweet’ so that normal posts and tweets will not be mixed.
 
@@ -80,11 +80,11 @@ zip 압축을 풀고 내용을 `wp-content/plugins/` 폴더에 넣습니다. 그
 1. 우선 [트위터 앱용 key 신청 페이지](https://dev.twitter.com/apps)로 갑니다. 로그인하라고 하면 자기 트위터의 아이디와 비밀번호를 입력하면 됩니다.
 1. __Create a new application__ 버튼을 누릅니다.
 1. 위 버튼을 누르면 __Create an application__ 페이지가 나옵니다. __Application Details__의 각 항목에 다음과 같이 입력합니다.
-    * Name: 알아서 적당한 이름을 넣으세요.  
-    * Description: 알아서 적당한 설명을 넣으세요.  
-    * Website: 자기 블로그 URL을 적습니다. __http://__를 포함해서 적어야 합니다.  
-    * Callback URL: 비워 놓습니다.  
-    * Developer Rules of the Road: __Yes, I agree__에 체크합니다.  
+**    * Name:** 알아서 적당한 이름을 넣으세요.  
+**    * Description:** 알아서 적당한 설명을 넣으세요.  
+**    * Website:** 자기 블로그 URL을 적습니다. __http://__를 포함해서 적어야 합니다.  
+**    * Callback URL:** 비워 놓습니다.  
+**    * Developer Rules of the Road:** __Yes, I agree__에 체크합니다.  
 1. CAPTCHA를 입력하고, __Create your Twitter application__ 버튼을 누릅니다.
 1. 자신이 만든 앱 화면으로 들어갔을 것입니다. 만약 다시 목록 화면이 나왔다면 방금 만든 어플리케이션으로 들어갑시다. __Details__ 탭을 봅니다. __Consumer Key__와 __Consumer Secret__이 있는 것을 확인하고 아래로 스크롤합니다.
 1. __Details__ 탭의 아래쪽에 보면 __Create my access token__ 버튼이 있습니다. 이걸 누릅니다. 그러면 버튼의 바로 위에 __Access Token__과 __Access Token Secret__이 생긴 것을 알 수 있습니다.
@@ -130,6 +130,10 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 ![7. your access token](http://dl.dropboxusercontent.com/u/15546257/blog/mytory/tweet-collection-info/07-your-access-token.png)
 
 ## Changelog ##
+
+### 1.1.3 ###
+
+* changed tweet collection rss feed URL. But old URL remains, too.
 
 ### 1.1.2 ###
 
