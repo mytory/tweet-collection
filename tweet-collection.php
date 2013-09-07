@@ -341,7 +341,7 @@ if (get_option('tweet-collection-title-length') AND get_option('tweet-collection
 } 
 
 function tc_rss_template ( $archive_template ) {
-    if (is_post_type_archive ('tweet') AND $_GET['rss'] == 'for-fb') {
+    if (is_post_type_archive ('tweet') AND isset($_GET['rss']) AND $_GET['rss'] == 'for-fb') {
         $args = array(
             'post_type' => 'tweet',
             'posts_per_page' => 20,
