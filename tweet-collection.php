@@ -286,7 +286,7 @@ function tc_print_searchform () {
     ?>
     <form id="searchform" class="search-tweets-form" method="get" action="<?php bloginfo('url') ?>">
         <label class="assistive-text" for="s"><?php _e('Search Tweets', 'tweet-collection') ?></label>
-        <input type="text" placeholder="<?php _e('Search Tweets', 'tweet-collection') ?>"
+        <input type="text"
                value="<?= get_search_query() ?>" id="s" name="s" class="field">
         <input type="hidden" name="post_type" value="tweet">
         <input type="submit" value="<?php _e('Search Tweets', 'tweet-collection') ?>" id="searchsubmit"
