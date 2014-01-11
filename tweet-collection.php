@@ -272,6 +272,16 @@ function tweet_collection_activate () {
     wp_schedule_event(time(), '20m', 'collect_tweets');
 }
 
+/**
+ * cron 등록 여부를 확인하고 등록이 해제돼 있으면 재등록.
+ */
+function tc_check_cron(){
+    if(wp_get_schedule('collect_tweets') == false){
+        wp_schedule_event(time(), '20m', 'collect_tweets');
+    }
+}
+tc_check_cron();
+
 register_activation_hook(__FILE__, 'tweet_collection_activate');
 
 // 플러그인 비활성화할 때 wp_cron 해제
