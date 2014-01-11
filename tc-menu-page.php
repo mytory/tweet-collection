@@ -146,6 +146,8 @@ jQuery(document).ready(function($){
 <?php tc_print_searchform();?>
 <h3><?php _e('Feedback', 'tweet-collection') ?></h3>
 <p><a href="mailto:mytory@gmail.com">mytory@gmail.com</a></p>
+<h3><?php _e('Delete settings', 'tweet-collection') ?></h3>
+<p>If you'll not use this plugin permanently, <a href="<?php echo $_SERVER['REQUEST_URI']?>&delete_all_settings=y">delete all settings</a>.</p>
 <?php 
 include 'php-markdown-1.0.1q/markdown.php';
 $information_file = "languages/information-en_US.md";
