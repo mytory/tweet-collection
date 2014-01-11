@@ -1,4 +1,4 @@
-<?
+<?php 
 // TODO token 등 입력하도록 입력폼을 만들어야 한다.
 // TODO 설명 번역 파일을 만들어야 한다.
 ?>
@@ -65,7 +65,7 @@ jQuery(document).ready(function($){
 </div>
 <?php }	?>
 <form method="post" class="tc">
-    <p><? _e('To get keys, read manual below.', 'tweet-collection') ?></p>
+    <p><?php _e('To get keys, read manual below.', 'tweet-collection') ?></p>
     <table class="form-table tc-table">
         <tr>
             <th scope="row">
@@ -141,10 +141,10 @@ jQuery(document).ready(function($){
 </form>
 <p><?php printf(__('<a href="%s/?post_type=tweet">You can see tweets on here.</a>', 'tweet-collection'), get_bloginfo('url'))?></p>
 <p><a href="widgets.php"><?php _e('Go to widget page. (Search Tweet Form, Tweet Archive Link)', 'tweet-collection')?></a></p>
-<p><a href="<?=plugin_dir_url(__FILE__)?>rss.php"><? _e('Tweets RSS Feed', 'tweet-collection') ?></a></p>
+<p><a href="<?php echo plugin_dir_url(__FILE__)?>rss.php"><?php _e('Tweets RSS Feed', 'tweet-collection') ?></a></p>
 <h3><?php _e('Search Tweets Example', 'tweet-collection')?></h3>
 <?php tc_print_searchform();?>
-<h3><? _e('Feedback', 'tweet-collection') ?></h3>
+<h3><?php _e('Feedback', 'tweet-collection') ?></h3>
 <p><a href="mailto:mytory@gmail.com">mytory@gmail.com</a></p>
 <?php 
 include 'php-markdown-1.0.1q/markdown.php';
@@ -159,11 +159,11 @@ $info_html = str_replace('{{slides}}', plugin_dir_url(__FILE__) . 'slides', $inf
 ?>
 <div class="tc-desc">
     <div class="icon32" id="icon-options-general"><br></div>
-    <h2><?_e('Tweet Collection Manual', 'tweet-collection')?></h2>
-    <h3><?_e('Table of Contents', 'tweet-collection')?></h3>
+    <h2><?php _e('Tweet Collection Manual', 'tweet-collection')?></h2>
+    <h3><?php _e('Table of Contents', 'tweet-collection')?></h3>
     <ul class="tc-desc__toc"></ul>
     <div class="tc-desc__content">
-        <?=$info_html;?>
+        <?php echo $info_html;?>
     </div>
 </div>
 </div><!-- .wrap -->

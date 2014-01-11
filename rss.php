@@ -29,7 +29,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 
 <channel>
     <title><?php bloginfo_rss('name'); wp_title_rss(); ?></title>
-    <atom:link href="<?=home_url('?post_type=tweet&amp;rss=for-fb')?>" rel="self" type="application/rss+xml" />
+    <atom:link href="<?php echo home_url('?post_type=tweet&amp;rss=for-fb')?>" rel="self" type="application/rss+xml" />
     <link><?php bloginfo_rss('url') ?></link>
     <description><?php bloginfo_rss("description") ?></description>
     <lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
@@ -40,7 +40,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
     <?php while( have_posts()) : the_post(); ?>
     <item>
         <title><?php the_title_rss() ?></title>
-        <?
+        <?php
         preg_match('/href=["|\']([^ ]+)["|\']/', get_the_content(), $match);
         $is_there_url = count($match);
         if($is_there_url){
