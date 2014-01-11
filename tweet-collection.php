@@ -96,7 +96,7 @@ function tc_menu_page () {
         do_action('collect_tweets');
     }
 
-    if($_GET['delete_all_settings'] == 'y'){
+    if(isset($_GET['delete_all_settings']) && $_GET['delete_all_settings'] == 'y'){
         tc_delete_settings();        
     }
 
