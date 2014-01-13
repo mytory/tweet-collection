@@ -21,7 +21,7 @@ function tc_get_option_names () {
 
 /**
  * from option name to variable name
- * @return [type] [description]
+ * @return String
  */
 function tc_convert_varname($opt_name){
 	$varname = str_replace('tweet-collection-', '', $opt_name);
@@ -162,6 +162,8 @@ function tc_is_setup_complete () {
  * @return array
  */
 function tc_get_timeline () {
+
+
     require_once("twitteroauth/twitteroauth/twitteroauth.php"); //Path to twitteroauth library
 
     $twitter_username = get_option('tweet-collection-twitter-username');
@@ -197,12 +199,24 @@ if (!function_exists('htmlspecialchars_decode')) {
     }
 }
 
+// check value.
+$tweet_collection_plugin_worked = false;
+
 // 트위터의 xml을 긁어 와서 새 Tweet Post Type으로 등록하는 함수를 만든다.
 function tc_insert_tweet_custom_post () {
+    global $tweet_collection_plugin_worked;
+    
     //설정이 제대로 안 돼 있으면 중단.
     if ( ! tc_is_setup_complete()) {
         return FALSE;
     }
+
+    // If tweet collection worked, don't do twice.
+    if($tweet_collection_plugin_worked == true){
+        return;
+    }
+    $tweet_collection_plugin_worked = true;
+
     $timeline = tc_get_timeline();
     
     foreach ($timeline as $tweet) {
