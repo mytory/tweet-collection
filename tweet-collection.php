@@ -4,7 +4,7 @@ Plugin Name: Tweet collection
 Description: This plugin collect tweets. tweets` post_type is ‘tweet’, when you save tweets general post and tweet do not mixed.
 Author: Ahn, Hyoung-woo
 Author URI: http://mytory.co.kr
-Version: 1.1.4
+Version: 1.1.5
 */
 
 function tc_get_option_names () {
@@ -21,7 +21,7 @@ function tc_get_option_names () {
 
 /**
  * from option name to variable name
- * @return [type] [description]
+ * @return String
  */
 function tc_convert_varname($opt_name){
 	$varname = str_replace('tweet-collection-', '', $opt_name);
@@ -96,6 +96,10 @@ function tc_menu_page () {
         do_action('collect_tweets');
     }
 
+    if(isset($_GET['delete_all_settings']) && $_GET['delete_all_settings'] == 'y'){
+        tc_delete_settings();        
+    }
+
     include 'tc-menu-page.php';
 }
 
@@ -108,7 +112,7 @@ function tc_should_setup_msg () {
             <a href="options-general.php?page=tweet-collection"><?php _e('Go to Tweet Collection Option page!', 'tweet-collection') ?></a>
         </p>
     </div>
-    <?
+    <?php
 }
 
 if ( ! tc_is_setup_complete()) {
@@ -158,6 +162,8 @@ function tc_is_setup_complete () {
  * @return array
  */
 function tc_get_timeline () {
+
+
     require_once("twitteroauth/twitteroauth/twitteroauth.php"); //Path to twitteroauth library
 
     $twitter_username = get_option('tweet-collection-twitter-username');
@@ -193,12 +199,24 @@ if (!function_exists('htmlspecialchars_decode')) {
     }
 }
 
+// check value.
+$tweet_collection_plugin_worked = false;
+
 // 트위터의 xml을 긁어 와서 새 Tweet Post Type으로 등록하는 함수를 만든다.
 function tc_insert_tweet_custom_post () {
+    global $tweet_collection_plugin_worked;
+    
     //설정이 제대로 안 돼 있으면 중단.
     if ( ! tc_is_setup_complete()) {
         return FALSE;
     }
+
+    // If tweet collection worked, don't do twice.
+    if($tweet_collection_plugin_worked == true){
+        return;
+    }
+    $tweet_collection_plugin_worked = true;
+
     $timeline = tc_get_timeline();
     
     foreach ($timeline as $tweet) {
@@ -268,15 +286,21 @@ function tweet_collection_activate () {
     wp_schedule_event(time(), '20m', 'collect_tweets');
 }
 
+/**
+ * cron 등록 여부를 확인하고 등록이 해제돼 있으면 재등록.
+ */
+function tc_check_cron(){
+    if(wp_get_schedule('collect_tweets') == false){
+        wp_schedule_event(time(), '20m', 'collect_tweets');
+    }
+}
+tc_check_cron();
+
 register_activation_hook(__FILE__, 'tweet_collection_activate');
 
 // 플러그인 비활성화할 때 wp_cron 해제
 function tweet_collection_deactivate () {
     wp_clear_scheduled_hook('collect_tweets');
- 	$option_names = tc_get_option_names();
- 	foreach ($option_names as $option) {
- 		delete_option($option);
- 	}
 }
 
 register_deactivation_hook(__FILE__, 'tweet_collection_deactivate');
@@ -287,12 +311,12 @@ function tc_print_searchform () {
     <form id="searchform" class="search-tweets-form" method="get" action="<?php bloginfo('url') ?>">
         <label class="assistive-text" for="s"><?php _e('Search Tweets', 'tweet-collection') ?></label>
         <input type="text"
-               value="<?= get_search_query() ?>" id="s" name="s" class="field">
+               value="<?php echo get_search_query() ?>" id="s" name="s" class="field">
         <input type="hidden" name="post_type" value="tweet">
         <input type="submit" value="<?php _e('Search Tweets', 'tweet-collection') ?>" id="searchsubmit"
                class="submit button-primary">
     </form>
-<?
+<?php
 }
 
 include_once 'widget.php';
@@ -352,3 +376,14 @@ function tc_rss_template ( $archive_template ) {
     return $archive_template;
 }
 add_filter( 'archive_template', 'tc_rss_template' ) ;
+
+/**
+ * If user want, delete settings.
+ * @return
+ */
+function tc_delete_settings(){
+    $option_names = tc_get_option_names();
+    foreach ($option_names as $option) {
+        delete_option($option);
+    }
+}
