@@ -2,10 +2,10 @@
 Contributors: mytory
 Tags: twitter
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 1.1.5
+Tested up to: 5.0
+Stable tag: 1.1.6
 License: GPLv2 or later
-Donate link:http://mytory.net/paypal-donation
+Donate link: https://mytory.net/paypal-donation/
 
 This plugin collect tweets from specified Twitter account. Post_type of collected tweets will be ‘tweet’ so that normal posts and tweets will not be mixed.
 
@@ -132,6 +132,10 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 ![7. your access token](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/07-your-access-token.png)
 
 == Changelog ==
+
+= 1.1.6 =
+
+* tiny bug fix.
 
 = 1.1.5 =
 
