@@ -150,8 +150,8 @@ jQuery(document).ready(function($){
 <p>If you'll not use this plugin permanently, <a href="<?php echo $_SERVER['REQUEST_URI']?>&delete_all_settings=y">delete all settings</a>.</p>
 <?php 
 include 'php-markdown-1.0.1q/markdown.php';
-$information_file = "languages/information-en_US.md";
-$information_file_expected = dirname(__FILE__) . '/languages/information-' . WPLANG . '.md';
+$information_file = dirname(__FILE__) . "/languages/information-en_US.md";
+$information_file_expected = dirname(__FILE__) . '/languages/information-' . get_locale() . '.md';
 if( is_file($information_file_expected) ){
 	$information_file = $information_file_expected;
 } 
