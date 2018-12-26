@@ -103,6 +103,65 @@ function tc_menu_page () {
     include 'tc-menu-page.php';
 }
 
+// 백업에서 임포트
+add_action('admin_menu', function () {
+    add_management_page(__('Import Tweets from Backup', 'tweet-collection'), __('Import Tweets from Backup', 'tweet-collection'), 'manage_options', 'import-from-backup', function () {
+        if (!empty($_FILES['backup_file'])) {
+            ini_set('max_execution_time', -1);
+            $objects = tc_get_objects_from_backup_json($_FILES['backup_file']['tmp_name']);
+            tc_import_from_backup($objects);
+        }
+        require 'tc-import-from-backup.php';
+    });
+});
+
+function tc_get_objects_from_backup_json($path) {
+    $tmp = explode("\n", file_get_contents($path));
+    $tmp[0] = '[ {';
+    $content = implode("\n", $tmp);
+    $objects = json_decode($content);
+    if (!$objects) {
+        wp_die('백업 js 파일이 잘못됐습니다.');
+    }
+    return $objects;
+}
+
+function tc_import_from_backup($objects) {
+
+    foreach ($objects as $i => $tweet) {
+        $post_content = tc_get_post_content($tweet->full_text, $tweet->entities->urls);
+        $post_title = htmlspecialchars_decode(strip_tags($post_content));
+        $tweet_guid = 'http://twitter.com/mytory/statuses/' . $tweet->id_str;
+        if (tc_is_already_insert($tweet_guid) > 0) {
+            echo "<p>{$tweet_guid} already imported.</p>";
+            continue;
+        }
+        $gmt_offset = get_option('gmt_offset');
+        $datetime = tc_get_datetime($tweet->created_at, $gmt_offset);
+        $post_date_gmt = tc_get_post_date_gmp($tweet->created_at, $gmt_offset);
+        $args = array (
+            'comment_status' => 'closed',
+            'post_date' => $post_date_gmt,
+            'ping_status' => 'closed',
+            'post_content' => $post_content . "\n\n" . "<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>",
+            'post_status' => 'publish',
+            'post_title' => $post_title,
+            'post_type' => 'tweet',
+        );
+        $post_id = wp_insert_post($args);
+
+        if ($post_id) {
+            add_post_meta($post_id, 'tc_tweet_guid', (string)$tweet_guid, TRUE);
+        }
+        ?>
+        <p><?= $post_content ?> imported.</p>
+        <?php
+        flush();
+    }
+
+    echo '<p>완료</p>';
+}
+
 // 트위터 아이디 설정을 하지 않은 경우 등록하라고 메시지를 뿌린다.
 function tc_should_setup_msg () {
     ?>
