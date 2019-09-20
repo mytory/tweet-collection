@@ -3,7 +3,7 @@ Contributors: mytory
 Tags: twitter
 Requires at least: 3.0
 Tested up to: 5.0
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 Donate link: https://mytory.net/paypal-donation/
 

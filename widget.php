@@ -1,7 +1,7 @@
 <?php
 //search widget
 class search_tweets_widget extends WP_Widget {
-	function search_tweets_widget() {
+	function __construct() {
 		// Instantiate the parent object
 		parent::__construct( false, __('Search Tweets Form','tweet-collection') );
 	}
@@ -22,7 +22,7 @@ class search_tweets_widget extends WP_Widget {
 
 //tweet archive link widget
 class tweet_archive_link_widget extends WP_Widget {
-	function tweet_archive_link_widget() {
+	function __construct() {
 		// Instantiate the parent object
 		parent::__construct( false, __('Tweet Archive Link', 'tweet-collection') );
 	}
