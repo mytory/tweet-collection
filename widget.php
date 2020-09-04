@@ -1,14 +1,14 @@
 <?php
-//search widget
+// search widget
 class search_tweets_widget extends WP_Widget {
 	function __construct() {
 		// Instantiate the parent object
-		parent::__construct( false, __('Search Tweets Form','tweet-collection') );
+		parent::__construct( false, __( 'Search Tweets Form', 'tweet-collection' ) );
 	}
 
 	function widget( $args, $instance ) {
 		echo $args['before_widget'];
-		echo $args['before_title'] . __('Search Tweets','tweet-collection') . $args['after_title'];
+		echo $args['before_title'] . __( 'Search Tweets', 'tweet-collection' ) . $args['after_title'];
 		tc_print_searchform();
 		echo $args['after_widget'];
 	}
@@ -20,28 +20,28 @@ class search_tweets_widget extends WP_Widget {
 	function form( $instance ) {}
 }
 
-//tweet archive link widget
+// tweet archive link widget
 class tweet_archive_link_widget extends WP_Widget {
 	function __construct() {
 		// Instantiate the parent object
-		parent::__construct( false, __('Tweet Archive Link', 'tweet-collection') );
+		parent::__construct( false, __( 'Tweet Archive Link', 'tweet-collection' ) );
 	}
 
 	function widget( $args, $instance ) {
-		
-		if( $instance['tc_link_text'] ){
+
+		if ( $instance['tc_link_text'] ) {
 			$link_text = $instance['tc_link_text'];
-		}else{
-			$link_text = __('My Tweet Archive', 'tweet-collection');
+		} else {
+			$link_text = __( 'My Tweet Archive', 'tweet-collection' );
 		}
-		
+
 		echo $args['before_widget'];
 		echo $args['before_title'] . $link_text . $args['after_title'];
 		?>
 		<span class="tweet-archive-link">
-			<a href="<?php bloginfo('url')?>/?post_type=tweet"><?php echo $link_text?></a>
+			<a href="<?php bloginfo( 'url' ); ?>/?post_type=tweet"><?php echo $link_text; ?></a>
 		</span>
-		<?php 
+		<?php
 		echo $args['after_widget'];
 	}
 
@@ -54,14 +54,13 @@ class tweet_archive_link_widget extends WP_Widget {
 	function form( $instance ) {
 		if ( $instance ) {
 			$link_text = esc_attr( $instance['tc_link_text'] );
-		}
-		else {
+		} else {
 			$link_text = __( 'My Tweet Archive', 'tweet-collection' );
 		}
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'tc_link_text' ); ?>">
-				<?php _e('Tweet Archive Link Text:', 'tweet-collection'); ?>
+				<?php _e( 'Tweet Archive Link Text:', 'tweet-collection' ); ?>
 			</label> 
 			<input 
 				class="widefat" 
@@ -71,7 +70,7 @@ class tweet_archive_link_widget extends WP_Widget {
 				value="<?php echo $link_text; ?>" />
 		</p>
 	
-	<?php 
+		<?php
 	}
 }
 
