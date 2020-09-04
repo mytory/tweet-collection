@@ -2,8 +2,8 @@
 Contributors: mytory
 Tags: twitter
 Requires at least: 3.0
-Tested up to: 5.0
-Stable tag: 1.1.7
+Tested up to: 5.5.1
+Stable tag: 1.1.8
 License: GPLv2 or later
 Donate link: https://mytory.net/paypal-donation/
 
@@ -123,15 +123,19 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 
 = Installation =
 
-![1. dev page login](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/01-dev-page-login.png)
-![2. create a new application](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/02-create-a-new-application.png)
-![3. application detail](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/03-application-detail.png)
-![4. create your twitter application](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/04-create-your-twitter-application.png)
-![5. oauth setting](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/05-oauth-setting.png)
-![6. create my access token](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/06-create-my-access-token.png)
-![7. your access token](http://dl.dropboxusercontent.com/u/15546257/wordpress-plugin/tweet-collection/07-your-access-token.png)
+![1. dev page login](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/01-dev-page-login.png)
+![2. create a new application](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/02-create-a-new-application.png)
+![3. application detail](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/03-application-detail.png)
+![4. create your twitter application](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/04-create-your-twitter-application.png)
+![5. oauth setting](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/05-oauth-setting.png)
+![6. create my access token](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/06-create-my-access-token.png)
+![7. your access token](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/07-your-access-token.png)
 
 == Changelog ==
+
+= 1.1.8 =
+
+You can import twitter backup json file.
 
 = 1.1.6 =
 

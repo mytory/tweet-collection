@@ -3,8 +3,8 @@
  * Plugin Name: Tweet collection
  * Description: This plugin collect tweets. tweets` post_type is ‘tweet’, when you save tweets general post and tweet do not mixed.
  * Author: Ahn, Hyoung-woo
- * Author URI: http://mytory.co.kr
- * Version: 1.1.7
+ * Author URI: https://mytory.net
+ * Version: 1.1.8
  */
 
 
