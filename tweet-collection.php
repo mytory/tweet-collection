@@ -1,12 +1,18 @@
 <?php
-/*
-Plugin Name: Tweet collection
-Description: This plugin collect tweets. tweets` post_type is ‘tweet’, when you save tweets general post and tweet do not mixed.
-Author: Ahn, Hyoung-woo
-Author URI: http://mytory.co.kr
-Version: 1.1.7
-*/
+/**
+ * Plugin Name: Tweet collection
+ * Description: This plugin collect tweets. tweets` post_type is ‘tweet’, when you save tweets general post and tweet do not mixed.
+ * Author: Ahn, Hyoung-woo
+ * Author URI: http://mytory.co.kr
+ * Version: 1.1.7
+ */
 
+
+/**
+ * Get all option names.
+ *
+ * @return void
+ */
 function tc_get_option_names() {
 	return array(
 		'tweet-collection-twitter-username',
@@ -20,7 +26,7 @@ function tc_get_option_names() {
 }
 
 /**
- * from option name to variable name
+ * From option name to variable name
  *
  * @return String
  */
@@ -30,14 +36,22 @@ function tc_convert_varname( $opt_name ) {
 	return $varname;
 }
 
-// 언어 파일 등록
+/**
+ * Register language file.
+ *
+ * @return void
+ */
 function tweet_collection_init() {
 	load_plugin_textdomain( 'tweet-collection', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
 add_action( 'plugins_loaded', 'tweet_collection_init' );
 
-// 커스텀 포스트 타입 등록
+/**
+ * Register custom post type
+ *
+ * @return void
+ */
 function tc_register_custom_post_type() {
 	$labels = array(
 		'name'               => _x( 'Tweets', 'post type general name', 'tweet-collection' ),
@@ -73,12 +87,21 @@ function tc_register_custom_post_type() {
 
 add_action( 'init', 'tc_register_custom_post_type' );
 
-// 옵션 페이지 html, action 등록.
 add_action( 'admin_menu', 'tc_top_menu' );
+/**
+ * 옵션 페이지 html, action 등록.
+ *
+ * @return void
+ */
 function tc_top_menu() {
 	add_options_page( __( 'Tweet Collection', 'tweet-collection' ), __( 'Tweet Collection', 'tweet-collection' ), 'manage_options', 'tweet-collection', 'tc_menu_page' );
 }
 
+/**
+ * 옵션 페이지 함수
+ *
+ * @return void
+ */
 function tc_menu_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( __( 'You do not have sufficient permissions to access this page.', 'tweet-collection' ) );
@@ -97,14 +120,16 @@ function tc_menu_page() {
 		do_action( 'collect_tweets' );
 	}
 
-	if ( isset( $_GET['delete_all_settings'] ) && $_GET['delete_all_settings'] == 'y' ) {
+	if ( isset( $_GET['delete_all_settings'] ) && 'y' == $_GET['delete_all_settings'] ) {
 		tc_delete_settings();
 	}
 
 	include 'tc-menu-page.php';
 }
 
-// 백업에서 임포트
+/**
+ * 백업에서 임포트
+ */
 add_action(
 	'admin_menu',
 	function () {
@@ -114,8 +139,8 @@ add_action(
 			'manage_options',
 			'import-from-backup',
 			function () {
-				if ( ! empty( $_FILES['backup_file'] ) ) {
-					ini_set( 'max_execution_time', -1 );
+				if ( ! empty( $_FILES['backup_file']['tmp_name'] ) ) {
+					set_time_limit( -1 );
 					$objects = tc_get_objects_from_backup_json( $_FILES['backup_file']['tmp_name'] );
 					tc_import_from_backup( $objects );
 				}
@@ -125,6 +150,10 @@ add_action(
 	}
 );
 
+/**
+ * @param  mixed $path
+ * @return void
+ */
 function tc_get_objects_from_backup_json( $path ) {
 	$tmp     = explode( "\n", file_get_contents( $path ) );
 	$tmp[0]  = '[ {';
@@ -136,6 +165,10 @@ function tc_get_objects_from_backup_json( $path ) {
 	return $objects;
 }
 
+/**
+ * @param  mixed $objects
+ * @return void
+ */
 function tc_import_from_backup( $objects ) {
 
 	foreach ( $objects as $i => $tweet ) {
@@ -153,7 +186,7 @@ function tc_import_from_backup( $objects ) {
 			'comment_status' => 'closed',
 			'post_date'      => $post_date_gmt,
 			'ping_status'    => 'closed',
-			'post_content'   => $post_content . "\n\n" . "<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>",
+			'post_content'   => $post_content . "\n\n<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>",
 			'post_status'    => 'publish',
 			'post_title'     => $post_title,
 			'post_type'      => 'tweet',
@@ -164,7 +197,7 @@ function tc_import_from_backup( $objects ) {
 			add_post_meta( $post_id, 'tc_tweet_guid', (string) $tweet_guid, true );
 		}
 		?>
-		<p><?php echo $post_content; ?> imported.</p>
+		<p><?php echo esc_html( $post_content ); ?> imported.</p>
 		<?php
 		flush();
 	}
@@ -172,7 +205,11 @@ function tc_import_from_backup( $objects ) {
 	echo '<p>완료</p>';
 }
 
-// 트위터 아이디 설정을 하지 않은 경우 등록하라고 메시지를 뿌린다.
+/**
+ * 트위터 아이디 설정을 하지 않은 경우 등록하라고 메시지를 뿌린다.
+ *
+ * @return void
+ */
 function tc_should_setup_msg() {
 	?>
 	<div class="updated">
@@ -191,6 +228,10 @@ if ( ! tc_is_setup_complete() ) {
 // 20분에 한 번씩 실행되는 옵션을 cron에 등록한다. (나중엔 얼마에 한 번씩 긁어올 지도 설정할 수 있게 한다.)
 add_filter( 'cron_schedules', 'tc_cron_add_20m' );
 
+/**
+ * @param  mixed $schedules
+ * @return void
+ */
 function tc_cron_add_20m( $schedules ) {
 	// Adds once weekly to the existing schedules.
 	$schedules['20m'] = array(
@@ -200,12 +241,22 @@ function tc_cron_add_20m( $schedules ) {
 	return $schedules;
 }
 
-// 텍스트로 있는 링크에 a 태그를 붙여서 실제 링크로 만들어 주는 함수
+/**
+ * 텍스트로 있는 링크에 a 태그를 붙여서 실제 링크로 만들어 주는 함수
+ *
+ * @param  mixed $s
+ * @return void
+ */
 function tc_linkfy( $s ) {
 	return preg_replace( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a class="link-shared" href="$1">$1</a>', $s );
 }
 
-// 텍스트를 받아서 첫 번째로 나오는 URL을 리턴해 주는 함수다.
+/**
+ * 텍스트를 받아서 첫 번째로 나오는 URL을 리턴해 주는 함수다.
+ *
+ * @param  mixed $s
+ * @return void
+ */
 function tc_extract_link( $s ) {
 	preg_match( '@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', $s, $matches );
 	if ( count( $matches ) > 0 ) {
@@ -215,7 +266,11 @@ function tc_extract_link( $s ) {
 	}
 }
 
-// 설정값이 모두 제대로 들어가 있는지 검사한다.
+/**
+ * 설정값이 모두 제대로 들어가 있는지 검사한다.
+ *
+ * @return void
+ */
 function tc_is_setup_complete() {
 	$tc_option_names = tc_get_option_names();
 	foreach ( $tc_option_names as $opt_name ) {
@@ -249,6 +304,13 @@ function tc_get_timeline() {
 	return $tweets;
 }
 
+/**
+ * @param  mixed $cons_key
+ * @param  mixed $cons_secret
+ * @param  mixed $oauth_token
+ * @param  mixed $oauth_token_secret
+ * @return void
+ */
 function get_connection_with_access_token( $cons_key, $cons_secret, $oauth_token, $oauth_token_secret ) {
 	$connection = new TwitterOAuth( $cons_key, $cons_secret, $oauth_token, $oauth_token_secret );
 	return $connection;
@@ -271,7 +333,11 @@ if ( ! function_exists( 'htmlspecialchars_decode' ) ) {
 // check value.
 $tweet_collection_plugin_worked = false;
 
-// 트위터의 xml을 긁어 와서 새 Tweet Post Type으로 등록하는 함수를 만든다.
+/**
+ * 트위터의 xml을 긁어 와서 새 Tweet Post Type으로 등록하는 함수를 만든다.
+ *
+ * @return void
+ */
 function tc_insert_tweet_custom_post() {
 	global $tweet_collection_plugin_worked;
 
@@ -303,7 +369,7 @@ function tc_insert_tweet_custom_post() {
 			'comment_status' => 'closed',
 			'post_date'      => $post_date_gmt,
 			'ping_status'    => 'closed',
-			'post_content'   => $post_content . "\n\n" . "<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>",
+			'post_content'   => $post_content . "\n\n<a class='tweet-permalink' href='{$tweet_guid}' title='Tweet Permalink'>{$datetime}</a>",
 			'post_status'    => 'publish',
 			'post_title'     => $post_title,
 			'post_type'      => 'tweet',
@@ -319,7 +385,7 @@ function tc_insert_tweet_custom_post() {
 }
 
 /**
- * text에 있는 URL을 실제 URL로 변경한다.
+ * Text에 있는 URL을 실제 URL로 변경한다.
  *
  * @param  string $text
  * @param  array  $urls URL 정보가 있는 배열
@@ -333,25 +399,44 @@ function tc_get_post_content( $text, $urls ) {
 	return $text;
 }
 
+/**
+ * @param  mixed $created_at
+ * @param  mixed $gmt_offset
+ * @return void
+ */
 function tc_get_post_date_gmp( $created_at, $gmt_offset ) {
 	$post_date_gmt = date( 'Y-m-d H:i:s', $gmt_offset * 60 * 60 + strtotime( $created_at ) );
 	return $post_date_gmt;
 }
 
+/**
+ * @param  mixed $created_at
+ * @param  mixed $gmt_offset
+ * @return void
+ */
 function tc_get_datetime( $created_at, $gmt_offset ) {
 	$timestamp = $gmt_offset * 60 * 60 + strtotime( $created_at );
 	$datetime  = date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $timestamp );
 	return $datetime;
 }
 
-// 중복 컨텐츠 확인을 위한 함수
+/**
+ * 중복 컨텐츠 확인을 위한 함수
+ *
+ * @param  mixed $tweet_guid
+ * @return void
+ */
 function tc_is_already_insert( $tweet_guid ) {
 	$query = new WP_Query( 'meta_key=tc_tweet_guid&meta_value=' . $tweet_guid . '&post_type=tweet&post_status=publish,future' );
 	return $query->post_count;
 }
 
-// 플러그인 활성화할 때 wp_cron 등록
 add_action( 'collect_tweets', 'tc_insert_tweet_custom_post' );
+/**
+ * 플러그인 활성화할 때 wp_cron 등록
+ *
+ * @return void
+ */
 function tweet_collection_activate() {
 	wp_schedule_event( time(), '20m', 'collect_tweets' );
 }
@@ -368,14 +453,22 @@ tc_check_cron();
 
 register_activation_hook( __FILE__, 'tweet_collection_activate' );
 
-// 플러그인 비활성화할 때 wp_cron 해제
+/**
+ * 플러그인 비활성화할 때 wp_cron 해제
+ *
+ * @return void
+ */
 function tweet_collection_deactivate() {
 	wp_clear_scheduled_hook( 'collect_tweets' );
 }
 
 register_deactivation_hook( __FILE__, 'tweet_collection_deactivate' );
 
-// 트윗 검색
+/**
+ * 트윗 검색
+ *
+ * @return void
+ */
 function tc_print_searchform() {
 	?>
 	<form id="searchform" class="search-tweets-form" method="get" action="<?php bloginfo( 'url' ); ?>">
@@ -391,6 +484,11 @@ function tc_print_searchform() {
 
 require_once 'widget.php';
 
+/**
+ * @param  mixed $text
+ * @param  mixed $len
+ * @return void
+ */
 function tc_text_dot( $text, $len ) {
 	$text = strip_tags( $text );
 	if ( strlen( $text ) <= $len ) {
@@ -403,7 +501,12 @@ function tc_text_dot( $text, $len ) {
 	}
 }
 
-// 트윗 제목에서 내 ID 제거
+/**
+ * 트윗 제목에서 내 ID 제거
+ *
+ * @param  mixed $title
+ * @return void
+ */
 function tc_remove_my_username_from_title( $title ) {
 	if ( get_post_type() == 'tweet' ) {
 		$username        = get_option( 'tweet-collection-twitter-username' );
@@ -420,7 +523,12 @@ function tc_remove_my_username_from_title( $title ) {
 add_action( 'the_title', 'tc_remove_my_username_from_title', 1 );
 add_filter( 'single_post_title', 'tc_remove_my_username_from_title', 1 );
 
-// 트윗 제목 길이
+/**
+ * 트윗 제목 길이
+ *
+ * @param  mixed $title
+ * @return void
+ */
 function tc_apply_title_length( $title ) {
 	if ( get_post_type() == 'tweet' ) {
 		$title_length = get_option( 'tweet-collection-title-length' );
@@ -434,6 +542,10 @@ if ( get_option( 'tweet-collection-title-length' ) and get_option( 'tweet-collec
 	add_filter( 'single_post_title', 'tc_apply_title_length' );
 }
 
+/**
+ * @param  mixed $archive_template
+ * @return void
+ */
 function tc_rss_template( $archive_template ) {
 	if ( is_post_type_archive( 'tweet' ) and isset( $_GET['rss'] ) and $_GET['rss'] == 'for-fb' ) {
 		$args             = array(
@@ -449,8 +561,6 @@ add_filter( 'archive_template', 'tc_rss_template' );
 
 /**
  * If user want, delete settings.
- *
- * @return
  */
 function tc_delete_settings() {
 	$option_names = tc_get_option_names();
