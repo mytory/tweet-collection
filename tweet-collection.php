@@ -171,7 +171,8 @@ function tc_get_objects_from_backup_json( $path ) {
  */
 function tc_import_from_backup( $objects ) {
 
-	foreach ( $objects as $i => $tweet ) {
+	foreach ( $objects as $i => $obj ) {
+		$tweet = $obj->tweet;
 		$post_content = tc_get_post_content( $tweet->full_text, $tweet->entities->urls );
 		$post_title   = htmlspecialchars_decode( strip_tags( $post_content ) );
 		$tweet_guid   = 'http://twitter.com/mytory/statuses/' . $tweet->id_str;
