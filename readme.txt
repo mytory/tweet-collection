@@ -3,7 +3,7 @@ Contributors: mytory
 Tags: twitter
 Requires at least: 3.0
 Tested up to: 5.5.1
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv2 or later
 Donate link: https://mytory.net/paypal-donation/
 
@@ -132,6 +132,10 @@ Please see the [screenshots](http://wordpress.org/extend/plugins/tweet-collectio
 ![7. your access token](https://plugins.svn.wordpress.org/tweet-collection/trunk/slides/07-your-access-token.png)
 
 == Changelog ==
+
+= 1.1.9 =
+
+Fix import tweets from backup feature. And update description.
 
 = 1.1.8 =
 
