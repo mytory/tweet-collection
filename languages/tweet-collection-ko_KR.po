@@ -1,18 +1,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tweeter Collection 1.0\n"
-"POT-Creation-Date: 2013-06-23 14:52+0900\n"
-"PO-Revision-Date: 2013-06-23 14:52+0900\n"
+"POT-Creation-Date: 2020-09-05 17:36+0900\n"
+"PO-Revision-Date: 2020-09-05 17:37+0900\n"
 "Last-Translator: mytory <mytory@gmail.com>\n"
 "Language-Team: mytory.net <mytory@gmail.com>\n"
+"Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-KeywordsList: __;_e;_x;_ex\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
+
+#: ../tc-import-from-backup.php:3 ../tweet-collection.php:137
+#: ../tweet-collection.php:138
+msgid "Import Tweets from Backup"
+msgstr "백엡에서 트윗 가져오기"
+
+#: ../tc-import-from-backup.php:14
+msgid "Backup File"
+msgstr "백업 파일"
+
+#: ../tc-import-from-backup.php:21
+msgid "Unzip your backup file. And Upload tweet.js file in data folder."
+msgstr ""
+"백업 파일 압축을 푼 뒤, data 폴더에 있는 tweet.js 파일을 업로드하세요."
 
 #: ../tc-menu-page.php:61
 msgid "Tweet Collection Options"
@@ -62,99 +77,111 @@ msgstr "Access Token Secret : "
 
 #: ../tc-menu-page.php:142
 #, php-format
+msgid ""
+"<a href=\"%s/tools.php?page=import-from-backup\">Import tweets from backup</"
+"a>"
+msgstr ""
+"<a href=“%s/tools.php?page=import-from-backup”>백업에서 트윗 가져오기</a>"
+
+#: ../tc-menu-page.php:143
+#, php-format
 msgid "<a href=\"%s/?post_type=tweet\">You can see tweets on here.</a>"
 msgstr "<a href=\"%s/?post_type=tweet\">트윗들은 여기서 볼 수 있습니다.</a>"
 
-#: ../tc-menu-page.php:143
+#: ../tc-menu-page.php:144
 msgid "Go to widget page. (Search Tweet Form, Tweet Archive Link)"
 msgstr "위젯 페이지 가기. (트위 검색, 트윗 모음 링크)"
 
-#: ../tc-menu-page.php:144
+#: ../tc-menu-page.php:145
 msgid "Tweets RSS Feed"
 msgstr "트윗 모음 RSS 피드"
 
-#: ../tc-menu-page.php:145
+#: ../tc-menu-page.php:146
 msgid "Search Tweets Example"
 msgstr "트윗 검색 예시"
 
-#: ../tc-menu-page.php:147
+#: ../tc-menu-page.php:148
 msgid "Feedback"
 msgstr "Feedback"
 
-#: ../tc-menu-page.php:162
+#: ../tc-menu-page.php:150
+msgid "Delete settings"
+msgstr ""
+
+#: ../tc-menu-page.php:165
 msgid "Tweet Collection Manual"
 msgstr "트윗 모으기 매뉴얼"
 
-#: ../tc-menu-page.php:163
+#: ../tc-menu-page.php:166
 msgid "Table of Contents"
 msgstr "목차"
 
-#: ../tweet-collection.php:41 ../tweet-collection.php:53
+#: ../tweet-collection.php:57 ../tweet-collection.php:69
 msgid "Tweets"
 msgstr "모은 트윗들"
 
-#: ../tweet-collection.php:42
+#: ../tweet-collection.php:58
 msgid "Tweet"
 msgstr "트윗"
 
-#: ../tweet-collection.php:43
+#: ../tweet-collection.php:59
 msgid "Add New"
 msgstr "트윗 추가"
 
-#: ../tweet-collection.php:44
+#: ../tweet-collection.php:60
 msgid "Add New Tweet"
 msgstr "새로운 트윗 등록"
 
-#: ../tweet-collection.php:45
+#: ../tweet-collection.php:61
 msgid "Edit Tweet"
 msgstr "트윗 수정"
 
-#: ../tweet-collection.php:46
+#: ../tweet-collection.php:62
 msgid "New Tweet"
 msgstr "새 트윗"
 
-#: ../tweet-collection.php:47
+#: ../tweet-collection.php:63
 msgid "All Tweets"
 msgstr "트윗 전체 보기"
 
-#: ../tweet-collection.php:48
+#: ../tweet-collection.php:64
 msgid "View Tweet"
 msgstr "트윗 보기"
 
-#: ../tweet-collection.php:49 ../tweet-collection.php:286
-#: ../tweet-collection.php:287 ../tweet-collection.php:290 ../widget.php:11
+#: ../tweet-collection.php:65 ../tweet-collection.php:476
+#: ../tweet-collection.php:480 ../widget.php:11
 msgid "Search Tweets"
 msgstr "트윗 검색"
 
-#: ../tweet-collection.php:50
+#: ../tweet-collection.php:66
 msgid "No tweets found"
-msgstr "수집된 트윗이 없습니다."
+msgstr "수집된 트윗이 없습니다"
 
-#: ../tweet-collection.php:51
+#: ../tweet-collection.php:67
 msgid "No tweets found in Trash"
-msgstr "휴지통에 트윗이 없습니다."
+msgstr "휴지통에 트윗이 없습니다"
 
-#: ../tweet-collection.php:76
+#: ../tweet-collection.php:97
 msgid "Tweet Collection"
 msgstr "트윗 모으기"
 
-#: ../tweet-collection.php:81
+#: ../tweet-collection.php:107
 msgid "You do not have sufficient permissions to access this page."
 msgstr "이 페이지를 볼 권한이 없습니다."
 
-#: ../tweet-collection.php:91
+#: ../tweet-collection.php:117
 msgid "Saved!"
-msgstr "저장 완료."
+msgstr "저장 완료!"
 
-#: ../tweet-collection.php:105
+#: ../tweet-collection.php:218
 msgid "Set options completely for Tweet Collection."
 msgstr "트윗 모으기 설정을 마쳐 주세요."
 
-#: ../tweet-collection.php:106
+#: ../tweet-collection.php:219
 msgid "Go to Tweet Collection Option page!"
-msgstr "트윗 모음 옵션 페이지에서 설정하시면 됩니다."
+msgstr "트윗 모음 옵션 페이지에서 설정하시면 됩니다!"
 
-#: ../tweet-collection.php:123
+#: ../tweet-collection.php:240
 msgid "Once by 20 minutes"
 msgstr "20분에 한 번씩"
 
@@ -166,13 +193,13 @@ msgstr "트윗 검색"
 msgid "Tweet Archive Link"
 msgstr "트윗 모음 링크"
 
-#: ../widget.php:35 ../widget.php:59
+#: ../widget.php:35 ../widget.php:58
 msgid "My Tweet Archive"
 msgstr "트윗 모음"
 
-#: ../widget.php:64
+#: ../widget.php:63
 msgid "Tweet Archive Link Text:"
-msgstr "트윗 모음 링크 텍스트"
+msgstr "트윗 모음 링크 텍스트:"
 
 #~ msgid "Failed!"
 #~ msgstr "오류 발생."

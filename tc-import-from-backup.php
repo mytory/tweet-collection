@@ -18,6 +18,7 @@
 				</td>
 			</tr>
 		</table>
+        <p class="help"><?php echo __('Unzip your backup file. And Upload tweet.js file in data folder.', 'tweet-collection') ?></p>
 		<p class="submit">
 			<input type="submit" value="Import" class="button-primary">
 		</p>

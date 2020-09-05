@@ -139,6 +139,7 @@ jQuery(document).ready(function($){
 		<input type="submit" value="Save" class="button-primary">
 	</p>
 </form>
+<p><?php printf( __( '<a href="%s/tools.php?page=import-from-backup">Import tweets from backup</a>', 'tweet-collection' ), get_admin_url() ); ?></p>
 <p><?php printf( __( '<a href="%s/?post_type=tweet">You can see tweets on here.</a>', 'tweet-collection' ), get_bloginfo( 'url' ) ); ?></p>
 <p><a href="widgets.php"><?php _e( 'Go to widget page. (Search Tweet Form, Tweet Archive Link)', 'tweet-collection' ); ?></a></p>
 <p><a href="<?php echo plugin_dir_url( __FILE__ ); ?>rss.php"><?php _e( 'Tweets RSS Feed', 'tweet-collection' ); ?></a></p>
